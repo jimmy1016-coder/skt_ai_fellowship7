@@ -8,9 +8,30 @@ This repository provides code for reproducing medical VQA and radiology report g
 
 ## 🔧 1. Data Preprocessing
 
-We use the IU [X-Ray](https://drive.google.com/file/d/1c0BXEuDy8Cmm2jfN0YYGkQxFZd2ZIoLg/view) dataset as our primary source.
+We use the IU [X-Ray](https://drive.google.com/file/d/1c0BXEuDy8Cmm2jfN0YYGkQxFZd2ZIoLg/view) dataset for our toy experiments.
 
 To generate the preprocessed data file, run:
 
 ```bash
 python iu_xray_preprocessing.py
+```
+
+This will create iuxray_preprocessed.jsonl containing cleaned VQA dataset. You can use it for VQA task!
+(✅ However, running this script is optional – the preprocessed file is already provided.)
+
+---
+
+## 2. VQA
+
+To reproduce the VQA results, run:
+
+```bash
+# VQA without RAG
+python llava_vqa.py
+
+# VQA with RAG (varying the number of retrieved documents) 
+python llava_vqa_rag_k_variants.py
+
+# VQA with adaptive RAG (proposed by [MMed_RAG](https://arxiv.org/abs/2410.13085))
+python llava_vqa_adaptive_rag.py 
+```
